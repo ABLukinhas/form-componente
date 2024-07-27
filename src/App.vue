@@ -1,5 +1,6 @@
 <script setup>
 import { ref, reactive } from 'vue'
+import MostrarResultado from './components/MostrarResultado.vue';
 const titulo = ref('FORMULARIO')
 const produto = reactive({
   nome: '',
@@ -43,17 +44,9 @@ const Roobies = [
     id: 8,
     nome: 'Papelaria'
   }
-]
+];
 
-const mostrarResultado = ref(false)
 
-function formatarPreco(idade) {
-  return `${idade}`
-}
-
-function buscarNome(id) {
-  return Roobies.find((categoria) => categoria.id === id).nome
-}
 </script>
 
 <template>
@@ -99,23 +92,22 @@ function buscarNome(id) {
           </template>
         </div>
       </fieldset>
-      <button @click="mostrarResultado = !mostrarResultado">Mostrar</button>
+        <MostrarResultado />
     </div>
-  </div>
-
-  <div v-if="mostrarResultado" class="resultado">
-    <h2 style="text-align: center; background-color: white; border-radius: 12px; margin-bottom: 15px;">
-      Dados do produto
-    </h2>
-    <p>Nome: {{ produto.nome }}</p>
-    <p>Idade: {{ formatarPreco(produto.idade) }}</p>
-    <p>Data de nascimento: {{ produto.DataNacimento }}</p>
-    <p>Cidade: {{ produto.Cidade }}</p>
-    <p>Sexualidade: {{ produto.Sexualidade }}</p>
-    <p>Roobies: {{ produto.Roobies }}</p>
-    <p v-for="categoria_id in produto.categoria" :key="categoria_id">
-      - {{ buscarNome(categoria_id) }}
-    </p>
+    <div v-if="mostrarResultado" class="resultado">
+             <h2 style="text-align: center; background-color: white; border-radius: 12px; margin-bottom: 15px;">
+             DADOS
+            </h2>
+            <p>Nome: {{ produto.nome }}</p>
+            <p>Idade: {{ formatarPreco(produto.idade) }}</p>
+            <p>Data de nascimento: {{ produto.DataNacimento }}</p>
+            <p>Cidade: {{ produto.Cidade }}</p>
+            <p>Sexualidade: {{ produto.Sexualidade }}</p>
+            <p>Roobies: {{ produto.Roobies }}</p>
+            <p v-for="categoria_id in produto.categoria" :key="categoria_id">
+            - {{ buscarNome(categoria_id) }}
+            </p>
+        </div>
   </div>
 </template>
 
@@ -130,8 +122,7 @@ function buscarNome(id) {
   align-items: center;
 }
 .container {
-  display: grid;
-  justify-content: flex;
+  justify-content: flex-start;
   gap: 2rem;
   margin-top: 1rem;
   padding: 0 2rem;
@@ -146,7 +137,7 @@ function buscarNome(id) {
 }
 
 .formulario {
-  background-color: #d29696;
+  background-color: #e99cd2;
 }
 
 .formulario .row {
@@ -164,7 +155,7 @@ function buscarNome(id) {
 }
 
 .resultado {
-  background-color: #98e0aa;
+  background-color: #a1f0b2;
  
 }
 
